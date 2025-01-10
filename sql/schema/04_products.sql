@@ -4,6 +4,7 @@ CREATE TABLE products(
         (START WITH 100000 INCREMENT BY 1) PRIMARY KEY,
         name TEXT NOT NULL,
         stock INT NOT NULL,
+        price REAL NOT NULL,
         description TEXT);
 -- +goose Down
 DROP TABLE products;
