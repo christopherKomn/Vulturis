@@ -123,7 +123,6 @@ func TestUpdateUser(t *testing.T) {
 	fmt.Printf("%+v\n", message)
 
 }
-
 func TestDeleteUser(t *testing.T) {
 	url := "http://localhost:8080/api/users"
 	user := database.User{
