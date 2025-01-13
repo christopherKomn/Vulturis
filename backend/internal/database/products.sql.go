@@ -10,18 +10,6 @@ import (
 	"database/sql"
 )
 
-const commitOrder = `-- name: CommitOrder :exec
-
-START TRANSACTION
-`
-
-// $1 user_uuid
-// $2 order_code
-func (q *Queries) CommitOrder(ctx context.Context) error {
-	_, err := q.db.ExecContext(ctx, commitOrder)
-	return err
-}
-
 const createProduct = `-- name: CreateProduct :one
 INSERT INTO products (name, stock, price, description)
 VALUES (
