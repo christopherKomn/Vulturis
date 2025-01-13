@@ -1,11 +1,10 @@
 -- name: CreateOrder :one
-INSERT INTO orders (order_code, created_at, updated_at ,user_uuid ,complete_status)
+INSERT INTO orders (order_code, created_at, updated_at ,user_uuid)
 VALUES (
     gen_random_uuid (),
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP,
-    $1,
-    $2
+    $1
 )
 RETURNING *;
 
@@ -32,6 +31,9 @@ delete from orders WHERE order_code = $1;
 
 -- name: DeleteOrderByUser :exec
 delete from orders WHERE user_uuid = $1;
+
+-- name: CommitOrder :one
+select * from commit_order($1::UUID, $2::UUID);
 
 -- name: DeleteOrders :exec
 delete  from orders;
